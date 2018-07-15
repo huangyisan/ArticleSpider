@@ -8,4 +8,7 @@ class QuanminSpider(scrapy.Spider):
     start_urls = ['http://www.quanmin.tv/']
 
     def parse(self, response):
+        anchor_list = response.css("span.common_w-card_host-name::text").extract()
+        viewer_list = response.css("span.common_w-card_views-num::text").extract()
+        anchor_viewer_dict = dict(zip(anchor_list, viewer_list))
         pass
